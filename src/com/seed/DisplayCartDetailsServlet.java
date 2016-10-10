@@ -2,10 +2,13 @@ package com.seed;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +20,13 @@ import com.seed.util.ProductsRepository;
 import com.seed.util.ProductsRepositoryInMemoryImpl;
 
 //TODO:0	Modification required
+// @WebServlet("/displayDetails") --- not required cause its mentioned in web.xml
 public class DisplayCartDetailsServlet extends HttpServlet {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Map<Integer, Product> productEntries;
 	
 //	TODO:1 Don't make any changes in this method
@@ -66,11 +75,35 @@ public class DisplayCartDetailsServlet extends HttpServlet {
 		if(cartRef!=null){
 			TreeSet<Integer> ts = (TreeSet<Integer>) cartRef.getProductSet();
 			
-			int i= 0;
+			List<Product> productsInCart = new ArrayList<Product>();
 			
-		for(Integer temp : ts){
+				
+			for(Integer temp : ts){
+				
+				productsInCart.add(productEntries.get(temp)) ;
+				
+			}
 			
-		}
+			out.println("<html><body>");
+			out.println("<table>");
+			out.println("<h2> Products In Your Cart </h2>");
+			
+			out.println("<tr> ");
+			out.println("<th>  ID  </th> ");
+			out.println("<th>  NAME  </th> ");
+			out.println("<th> PRICE </th>");
+			out.println("</tr>");
+			
+			for(int i=0 ; i<productsInCart.size();i++){
+				Product prod = productsInCart.get(i);
+				out.println("<tr>");
+				out.println("<td>"+ prod.getId() +"</td>");
+				out.println("<td>"+ prod.getName()+"</td>");
+				out.println("<td>"+ prod.getPrice() +"</td>");
+				out.println("</tr>");
+			}
+			out.println("</table>");
+			out.println("</body></html>");
 		}
 		
 //		TODO:4	Scan all productids retrieved from Cart and maintain a list of corresponding products	

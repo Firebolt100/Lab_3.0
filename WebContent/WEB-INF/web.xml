@@ -6,13 +6,34 @@
 	<display-name>Lab_3.0</display-name>
 	
 <!-- Make categories.html as welcome page for this web app context--> 
+  <welcome-file-list>
+    <welcome-file>categories.html</welcome-file>
+  </welcome-file-list>
 
 
 <!-- Make container aware that "com.seed.StoreCartDetailsServlet" is a servlet named as "StoreCartDetailsServlet" -->  
 <!-- Provide URL mapping "/storeDetails" for the servlet "StoreCartDetailsServlet"--> 
-
+  <servlet>
+  	<servlet-name>StoreCartDetailsServlet</servlet-name>
+  	<servlet-class>com.seed.StoreCartDetailsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>StoreCartDetailsServlet</servlet-name>
+  	<url-pattern>/storeDetails</url-pattern>
+  </servlet-mapping>
+  
 	
 <!-- Make container aware that "com.seed.DisplayCartDetailsServlet" is a servlet named as "DisplayCartDetailsServlet" --> 
 <!-- Provide URL mapping "/displayDetails" for the servlet "DisplayCartDetailsServlet"--> 
-
+  <servlet>
+  	<servlet-name>DisplayCartDetailsServlet</servlet-name>
+  	<servlet-class>com.seed.DisplayCartDetailsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>DisplayCartDetailsServlet</servlet-name>
+  	<url-pattern>/displayDetails</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
